@@ -72,8 +72,9 @@ public class TodoResource {
     }
     
     @DELETE
-    public Result deleteTodo(Todo todo) {
-        if (TodoDao.getInstance().deleteTodo(todo)) {
+    @Path("{id}")
+    public Result deleteTodo(@PathParam("id") Long id) {
+        if (TodoDao.getInstance().deleteTodo(id)) {
             return new Result(true, "Delete successful");
         } else {
             return new Result(false, "Error on delete");

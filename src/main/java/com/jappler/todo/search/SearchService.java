@@ -18,6 +18,14 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * A service for accessing search functionality
+ * 
+ * Requests for indices are typed and returned by index
+ * name and type
+ * 
+ * @author justinappler
+ */
 public class SearchService {
     
     private static Logger logger;
@@ -45,6 +53,9 @@ public class SearchService {
         logger = LoggerFactory.getLogger(SearchService.class);
     }
     
+    /**
+     * Get an instance of the search service
+     */
     public static SearchService getInstance() {
         if (instance == null) {
             instance = new SearchService();
@@ -53,6 +64,12 @@ public class SearchService {
         return instance;
     }
     
+    /**
+     * Get a search index for a given object type, index type, and index name, e.g.
+     * <code>
+     *      getIndex(Article.class, "article", "articles")
+     * </code>
+     */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     public <T> SearchIndex<T> getIndex(Class<T> clazz, String type, String indexName) {
         if (indices == null) {
@@ -101,6 +118,9 @@ public class SearchService {
             }
         }
 
+        /**
+         * Add a document to the search index
+         */
         public void index(T obj) {
             Index index = new Index.Builder(obj).index(indexName).type(indexType).build();
             try {
@@ -114,6 +134,9 @@ public class SearchService {
             }
         }
         
+        /**
+         * Return all documents in the search index matching a given query
+         */
         public List<T> query(String query) {
             SearchSourceBuilder searchSourceBuilder = new SearchSourceBuilder();
             searchSourceBuilder.query(QueryBuilders.queryString(query));
