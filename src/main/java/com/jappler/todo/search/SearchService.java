@@ -32,7 +32,7 @@ public class SearchService {
     private SearchService() {
         // Configuration
         HttpClientConfig clientConfig = new HttpClientConfig
-                .Builder(System.getenv("SEARCHLY_WHATEVER"))
+                .Builder(System.getenv("SEARCHBOX_URL"))
                 .multiThreaded(true)
                 .build();
         

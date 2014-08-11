@@ -21,11 +21,6 @@ public class Main {
         final WebAppContext root = new WebAppContext();
 
         root.setContextPath("/");
-        // Parent loader priority is a class loader setting that Jetty accepts.
-        // By default Jetty will behave like most web containers in that it will
-        // allow your application to replace non-server libraries that are part of the
-        // container. Setting parent loader priority to true changes this behavior.
-        // Read more here: http://wiki.eclipse.org/Jetty/Reference/Jetty_Classloading
         root.setParentLoaderPriority(true);
 
         final String webappDirLocation = "src/main/webapp/";
