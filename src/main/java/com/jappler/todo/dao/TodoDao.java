@@ -46,7 +46,7 @@ public class TodoDao {
     private void addSampleData(List<Todo> todos) {
         Todo one = new Todo(1l, "Clean out the fridge", "Clean the shelves and throw away garbage", false);
         Todo two = new Todo(2l, "Do the dishes", "Wash each of the dishes with soap and water", false);
-        Todo three = new Todo(3l, "Build a Jersey-based REST API for a hypothetical Todo app", "Write Java as needed", false);
+        Todo three = new Todo(3l, "Build a Jersey-based REST API for a hypothetical Todo app", "Write Java as needed", true);
         
         todos.add(one);
         index.index(one);
